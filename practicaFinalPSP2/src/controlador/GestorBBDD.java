@@ -23,7 +23,7 @@ public class GestorBBDD {
 			conexion.close();
 			System.out.println("*********"+suma+"*********");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Error en la BBDD");
 		}
 		
 		
