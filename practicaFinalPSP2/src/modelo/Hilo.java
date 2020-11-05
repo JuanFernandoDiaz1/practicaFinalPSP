@@ -1,35 +1,35 @@
 package modelo;
 
-import java.util.concurrent.Semaphore;
-
 import controlador.GestorBBDD;
 
-
-
 public class Hilo extends Thread {
-	int suma=0;
+	private int suma;
 	private int rangoInicial = 0;
 	private int rangoFinal = 0;
-	private Semaphore semaforo;
+	
+	//constructor por defecto
+	public Hilo() {
+		this.rangoFinal = 0;
+		this.rangoInicial = 0;
+		this.suma = 0;
+	}
 
-	public Hilo(int rangoInicial, int rangoFinal, Semaphore semaforo) {
+	//constructor al que le pasamos las siguientes variables
+	public Hilo(int rangoInicial, int rangoFinal) {
 		this.rangoFinal = rangoFinal;
 		this.rangoInicial = rangoInicial;
-		this.semaforo = semaforo;
 	}
 
 	public void run() {
-		try {
-			semaforo.acquire();
-			GestorBBDD gestor = new GestorBBDD();
-			suma=gestor.selectIngresos2(rangoInicial, rangoFinal);
-			semaforo.release();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		//la suma sera la suma de todos los registros que sume este hilo
+		GestorBBDD gestor = new GestorBBDD();
+		//le pasamos rango inicial y final para controlar el numero de registros que suma
+		suma += gestor.selectIngresosConHilos(rangoInicial, rangoFinal);
 	}
 	
+	//con este metodo recogemos la suma
 	public int getSuma() {
 		return suma;
 	}
+
 }

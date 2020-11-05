@@ -1,8 +1,6 @@
 package controlador;
 
 import java.util.ArrayList;
-import java.util.concurrent.Semaphore;
-
 import modelo.Hilo;
 
 public class Gestor {
@@ -22,29 +20,34 @@ public class Gestor {
 	}
 	
 	//---------------------------------------------------------------
-	public void parte2() {
+	public void leerConcurrente() {
 		long tiempoInicio = System.currentTimeMillis();
 		
-		klk();
+		sumarRegistros();
 		
 		long tiempoFinal = System.currentTimeMillis();
 		System.out.println("Tiempo que tardo: " + (tiempoFinal - tiempoInicio) + " milisegundos");
 	}
 	
-	public void klk() {
+	public void sumarRegistros() {
 		GestorBBDD gestorDataBase = new GestorBBDD();
-		ArrayList<Hilo> hilos = new ArrayList<Hilo>();
-		int suma=0;
+		ArrayList<Hilo> hilos = new ArrayList<>();
 		int rangoInicial = 0;
 		int rangoFinal = 0;
-		int numRegistros=gestorDataBase.numeroRegistros();
+		//sacamos el numero de registros que tenemos
+		int numRegistros=gestorDataBase.getNumeroRegistros();
 		
 		int numHilos=5;
+		//hacemos el calculo de registros que hara cada hilo
 		int resultado = numRegistros / numHilos;
-	
+		
+		//sacamos el resto para que ningun falle ningun registro
 		int resto = numRegistros % numHilos;
-		Semaphore semaforo = new Semaphore(1);
+
+		//bucle que ejecuta los 5 hilos
 		for (int x = 0; x < 5; x++) {
+			//si es el ultimo hilo y el resto es mayor a cero el rango final sera el numero de registros para que el ultimo hilo
+			//haga los registros restantes
 			if (resto > 0 && x == numHilos - 1) {
 				rangoInicial = resultado * x;
 				rangoFinal = numRegistros+1;
@@ -52,15 +55,22 @@ public class Gestor {
 				rangoInicial = resultado * x;
 				rangoFinal = resultado * (x + 1);
 			}
-		
-			Hilo hilo = new Hilo(rangoInicial, rangoFinal, semaforo);
-			hilo.start();
-			System.out.println(hilo.getSuma());
+				//lanzamos los hilos
+				Hilo hilo = new Hilo(rangoInicial, rangoFinal);
+				hilo.start();
+				hilos.add(hilo);
+		}
+		int suma=0;
+		for(int x=0;x<hilos.size();x++) {
+			try {
+				hilos.get(x).join();
+				suma+=hilos.get(x).getSuma();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		
-		for(int x = 0; x<hilos.size(); x++) {
-			suma+=hilos.get(x).getSuma();
-		}
+		//mostramos la suma
 		System.out.println(suma);
 	}
 }

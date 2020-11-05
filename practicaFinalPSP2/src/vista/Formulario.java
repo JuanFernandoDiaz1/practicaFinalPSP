@@ -1,10 +1,8 @@
 package vista;
 
-import java.util.concurrent.Semaphore;
-
-import controlador.GestorBBDD;
-import modelo.Hilo;
-
 public class Formulario {
-
+	
+	public void errorBBDD() {
+		System.out.println("Error en la bbdd");
+	}
 }

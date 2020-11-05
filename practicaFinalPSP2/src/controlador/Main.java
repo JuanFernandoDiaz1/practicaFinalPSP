@@ -11,7 +11,6 @@ public class Main {
 		
 		System.out.println("");
 		System.out.println("Parte 2");
-		gestor.parte2();
-		
+		gestor.leerConcurrente();		
 	}
 }
