@@ -24,7 +24,7 @@ public class Hilo extends Thread {
 		//la suma sera la suma de todos los registros que sume este hilo
 		GestorBBDD gestor = new GestorBBDD();
 		//le pasamos rango inicial y final para controlar el numero de registros que suma
-		suma += gestor.selectIngresosConHilos(rangoInicial, rangoFinal);
+		suma += gestor.selectIngresos(rangoInicial, rangoFinal);
 	}
 	
 	//con este metodo recogemos la suma

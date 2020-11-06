@@ -4,9 +4,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Parte 1");
 		Gestor gestor = new Gestor();
+		
+		System.out.println("Parte 1");
 		gestor.leerSecuencial();
+		System.out.println();
 		System.out.println("*********************");
 		
 		System.out.println("");

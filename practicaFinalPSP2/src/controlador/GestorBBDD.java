@@ -9,29 +9,9 @@ import java.sql.Statement;
 import vista.Formulario;
 
 public class GestorBBDD {
-	//Metodo que realiza el select en la bbdd y suma los ingresos
-	public void selectIngresos() {
-		Formulario form = new Formulario();
-		try {
-			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bbdd_psp_1", "DAM2020_PSP",
-					"DAM2020_PSP");
-			Statement consulta = conexion.createStatement();
-			ResultSet registro = consulta.executeQuery("select ingresos from empleados");
-			int suma=0;
-			while(registro.next()) {
-				//sumamos los ingresos mientras haya registros
-				suma+=registro.getInt("ingresos");
-			}
-			conexion.close();
-			System.out.println("*********"+suma+"*********");
-		} catch (SQLException e) {
-			form.errorBBDD();
-		}
-	}
-	
 	
 	//metodo que realiza el select en la bbdd y suma los ingresos dentro del rango que le pasemos
-	public int selectIngresosConHilos(int rangoInicial, int rangoFinal) {
+	public int selectIngresos(int rangoInicial, int rangoFinal) {
 		Formulario form = new Formulario();
 		int suma=0;
 		try {
