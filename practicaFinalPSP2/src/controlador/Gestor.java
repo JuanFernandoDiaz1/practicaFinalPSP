@@ -53,7 +53,6 @@ public class Gestor {
 			
 			//sacamos el resto para que ningun falle ningun registro
 			int resto = numRegistros % numHilos;
-
 			//bucle que ejecuta los 5 hilos
 			for (int x = 0; x < 5; x++) {
 				//si es el ultimo hilo y el resto es mayor a cero el rango final sera el numero de registros para que el ultimo hilo
