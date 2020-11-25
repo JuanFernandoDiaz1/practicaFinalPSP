@@ -2,8 +2,8 @@ Autor:
 Juan Fernando Diaz Diaz
 
 Proyectos:
--practicaFinalPSP
--practicaFinalPSP2
+- practicaFinalPSP
+- practicaFinalPSP2
 
 Requisitos:
 - Database: BBDD_PSP_1
@@ -15,5 +15,5 @@ Requisitos:
 - INGRESOS: Integer
 
 Funcionamiento:
-1.Ejecutar practicaFinalPSP y registrar empleados.
-2.Ejecutar practicaFinalPSP2 y leera la suma de los ingresos de todos los empleados.
+1. Ejecutar practicaFinalPSP y registrar empleados.
+2. Ejecutar practicaFinalPSP2 y leera la suma de los ingresos de todos los empleados.
