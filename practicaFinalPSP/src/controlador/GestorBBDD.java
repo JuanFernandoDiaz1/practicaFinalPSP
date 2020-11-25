@@ -16,6 +16,8 @@ public class GestorBBDD {
 			consulta.executeUpdate(
 					"insert into EMPLEADOS (email, ingresos) values ('" + email + "', " + ingresos + ")");
 			conexion.close();
+			
+			System.out.println("Registros insertados correctamente");
 		} catch (SQLException e) {
 			System.out.println("Error en la BBDD");
 		}

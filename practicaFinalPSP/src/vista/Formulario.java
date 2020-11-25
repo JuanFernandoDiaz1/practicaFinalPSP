@@ -80,7 +80,6 @@ public class Formulario {
 			// Inicio el hilo
 			Hilo hilo = new Hilo(rangoInicial, rangoFinal, semaforo);
 			hilo.start();
-			System.out.println("Thread-" + x + " registros insertados correctamente");
 		}
 	}
 }
