@@ -14,7 +14,7 @@ public class GestorBBDD {
 
 			Statement consulta = conexion.createStatement();
 			consulta.executeUpdate(
-					"insert into EMPLEADOS (email, ingresos) values ('" + email + "', " + ingresos + ")");
+					"insert into EMPLEADOS (EMAIL, INGRESOS) values ('" + email + "', " + ingresos + ")");
 			conexion.close();
 			
 			System.out.println("Registros insertados correctamente");
